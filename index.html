@@ -14,26 +14,39 @@
 
         <script type="text/babel">
             class App extends React.Component {
-                State = {
+                state = {
                     name: 'Yusifu Mohamed Barrie',
                     age: 28 
                      
                 }
-                onClick = (ayon) => {
-                    console.log(this.State);
+                // onClick = (ayon) => {
+                //     console.log(this.State);
+                // }
+                // mouseHover(e){
+                //     console.log(e.target);
+                // }
+                // onCopy(e){
+                //     console.log ('Hey, Stop copying my work')
+                // }
+
+                handleChange = (e) => {
+                    this.setState({
+                        name: e.target.value
+                    });
                 }
-                mouseHover(e){
-                    console.log(e.target);
-                }
-                onCopy(e){
-                    console.log ('Hey, Stop copying my work')
+                handleSubmit = (e) => {
+                    e.preventDefault();
+                    console.log('Form Submitted', this.state.name) 
                 }
                 render() {
                     return (
                         <div className="app-content">
-                             <h1>Hey, It me Ayon</h1>
-                             <p>My Name is : {this.State.name}</p>
-                            <p>I am {this.State.age} of age </p>
+                             <h1>My Name is : {this.state.name}</h1>
+                            <form onSubmit={this.handleSubmit}>
+                                <input type="text"  onChange={this.handleChange} />
+                                <button>Submit</button>
+                            </form>
+
                             <button onClick={this.onClick}>Click Ayon</button>
                             <button onMouseOver={this.mouseHover}>Hover Mouse</button>
                             <p onCopy={this.onCopy}>My Work</p>
